@@ -8,19 +8,28 @@ $networkInterface = "nic1"
 $publicIPAdd = "publicIP1"
 $networkSG = "NSG1"
 
-#create Resource group
+#Create Resource group
+$rg = "rg-pslab"
+$location = "westus3"
 New-AzResourceGroup -name $rg -Location $location
+
 #Create VNet
-# configuration
+$subName = "SubnetA"
+$subPrefix = "10.1.0.0/24"
 $subnet = New-AzVirtualNetworkSubnetConfig -Name $subName -AddressPrefix $subPrefix 
+$rg = "rg-pslab"
+$location = "westus3"
 New-AzVirtualNetwork -Name $network -ResourceGroupName $rg -Location $location -AddressPrefix $AddressPrefix -Subnet $subnet
+
 #Create Subnet
+$network = "psnet"
+$rg = "rg-pslab"
 $vn = Get-AzVirtualNetwork -Name $network -ResourceGroupName $rg
 Write-Host $vn.AddressSpace.AddressPrefixes
 Add-AzVirtualNetworkSubnetConfig -name $subName -VirtualNetwork $vn -AddressPrefix $subPrefix
 #$vn | Set-AzVirtualNetwork
 $vn = Get-AzVirtualNetwork -Name $network -ResourceGroupName $rg
-
+$subnet = Get-AzVirtualNetworkSubnetConfig -VirtualNetwork $vn -Name $subName
 #Create network interface
 $subnet = Get-AzVirtualNetworkSubnetConfig -VirtualNetwork $vn -Name $subName
 New-AzNetworkInterface -Name $networkInterface -ResourceGroupName $rg -Location $location -SubnetId $subnet.Id -IpConfigurationName "nic1IPconfig"
