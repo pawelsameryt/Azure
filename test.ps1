@@ -1,0 +1,1 @@
+New-AzResourceGroup -name "az-104" -location "westus" 
