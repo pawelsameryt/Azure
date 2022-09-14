@@ -1,3 +1,4 @@
+#Add subnet to VNET
 $resourceGroup = "exam-grp"
 $network="exam-network"
 $subnetName="SubnetA"

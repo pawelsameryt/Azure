@@ -1,7 +1,7 @@
 $resourceGroup = "exam-grp"
 $location = "NorthEurope"
 $appServicePlanName="app-plan"
-$appName="webapp788788"
+$appName="webapp78873338"
 
 # First we need to create the App Service Plan
 

@@ -1,3 +1,4 @@
+#Add subnet to VNET
 $resourceGroup = "exam-grp"
 $location = "North Europe"
 $network="exam-network"
